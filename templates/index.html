@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan - Advanced Anomaly Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-brain logo-icon"></i>
+            <div>
+                <div>NeuroScan</div>
+                <div class="header-tagline">Advanced Anomaly Detection</div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <a href="/"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-heartbeat"></i> ECG Analysis</a>
+            <a href="#"><i class="fas fa-wave-square"></i> EEG Analysis</a>
+            <a href="/brain"><i class="fas fa-brain"></i> Brain Scans</a>
+            <a href="#"><i class="fas fa-history"></i> History</a>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">MAIN NAVIGATION</div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-heartbeat"></i> ECG Analysis</a></li>
+                <li><a href="#"><i class="fas fa-wave-square"></i> EEG Analysis</a></li>
+                <li><a href="/brain"><i class="fas fa-brain"></i> Brain Tumor Analysis</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">DATA MANAGEMENT</div>
+            <ul class="sidebar-menu">
+                <li><a href="#"><i class="fas fa-history"></i> Analysis History</a></li>
+                <li><a href="#"><i class="fas fa-file-alt"></i> Reports</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">CONFIGURATION</div>
+            <ul class="sidebar-menu">
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Help & Support</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Medical Anomaly Detection Dashboard</h1>
+            <div class="dashboard-subtitle">Monitor and analyze ECG, EEG, and brain scan data</div>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stat-cards">
+            <div class="stat-card">
+                <i class="fas fa-heartbeat stat-card-icon"></i>
+                <div class="stat-card-trend trend-up">↗ 8%</div>
+                <div class="stat-card-value">24</div>
+                <div class="stat-card-label">ECG Analyses</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-wave-square stat-card-icon"></i>
+                <div class="stat-card-trend trend-down">↘ 3%</div>
+                <div class="stat-card-value">17</div>
+                <div class="stat-card-label">EEG Analyses</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-brain stat-card-icon"></i>
+                <div class="stat-card-trend trend-up">↗ 12%</div>
+                <div class="stat-card-value">9</div>
+                <div class="stat-card-label">Brain Scans</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-exclamation-circle stat-card-icon"></i>
+                <div class="stat-card-trend trend-up">↗ 16%</div>
+                <div class="stat-card-value">7</div>
+                <div class="stat-card-label">Anomalies Detected</div>
+            </div>
+        </div>
+
+        <!-- Analysis Sections -->
+        <div class="analysis-sections">
+            <div class="analysis-section">
+                <div class="section-header">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>ECG Status</span>
+                </div>
+                <div class="graph-container">
+                    <canvas id="ecgChart"></canvas>
+                </div>
+                <div class="analysis-footer">
+                    <div class="anomaly-indicator red">
+                        <i class="fas fa-circle"></i> 2 anomalies detected
+                    </div>
+                    <a href="#" class="view-link">View details</a>
+                </div>
+            </div>
+            <div class="analysis-section">
+                <div class="section-header">
+                    <i class="fas fa-wave-square"></i>
+                    <span>EEG Status</span>
+                </div>
+                <div class="graph-container">
+                    <canvas id="eegChart"></canvas>
+                </div>
+                <div class="analysis-footer">
+                    <div class="anomaly-indicator blue">
+                        <i class="fas fa-circle"></i> 3 anomalies detected
+                    </div>
+                    <a href="#" class="view-link">View details</a>
+                </div>
+            </div>
+            <div class="analysis-section">
+                <div class="section-header">
+                    <i class="fas fa-brain"></i>
+                    <span>Brain Scan Status</span>
+                </div>
+                <div class="graph-container">
+                    <canvas id="brainChart"></canvas>
+                </div>
+                <div class="analysis-footer">
+                    <div class="anomaly-indicator green">
+                        <i class="fas fa-circle"></i> All normal
+                    </div>
+                    <a href="#" class="view-link">View details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detection Summary and Upload Section -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="detection-summary">
+                    <div class="summary-header">
+                        <div class="summary-title">
+                            <i class="fas fa-chart-bar"></i> Detection Summary
+                        </div>
+                        <select class="date-selector">
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 3 months</option>
+                        </select>
+                    </div>
+                    <div class="summary-content">
+                        <canvas id="summaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="upload-section">
+                    <h3 class="upload-title">Upload Data for Analysis</h3>
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <p class="upload-text">Click to upload or drag and drop files here</p>
+                        <input type="file" id="file-upload" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Upload handler
+            $('#upload-area').click(function() {
+                $('#file-upload').click();
+            });
+            
+            $('#file-upload').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    
+                    $.ajax({
+                        url: '/upload',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            alert('File successfully processed');
+                        },
+                        error: function() {
+                            alert('Error processing file');
+                        }
+                    });
+                }
+            });
+            
+            // Chart configurations
+            const createWaveformChart = (canvasId, color, fillColor) => {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                
+                // Generate random data for waveform
+                const points = 50;
+                const data = Array.from({ length: points }, () => Math.random() * 2 - 1);
+                
+                return new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({ length: points }, (_, i) => i),
+                        datasets: [{
+                            data: data,
+                            borderColor: color,
+                            borderWidth: 1.5,
+                            backgroundColor: fillColor,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { display: false },
+                            y: { 
+                                display: false,
+                                min: -1.2,
+                                max: 1.2
+                            }
+                        },
+                        animation: { duration: 0 }
+                    }
+                });
+            };
+            
+            // Create charts
+            createWaveformChart('ecgChart', '#e11d48', 'rgba(225, 29, 72, 0.1)');
+            createWaveformChart('eegChart', '#3b82f6', 'rgba(59, 130, 246, 0.1)');
+            
+            // Brain scan chart is more complex with multiple overlapping lines
+            const brainCtx = document.getElementById('brainChart').getContext('2d');
+            const brainData1 = Array.from({ length: 50 }, () => Math.random() * 2 - 1);
+            const brainData2 = Array.from({ length: 50 }, () => Math.random() * 2 - 1);
+            
+            new Chart(brainCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({ length: 50 }, (_, i) => i),
+                    datasets: [
+                        {
+                            data: brainData1,
+                            borderColor: '#8b5cf6',
+                            borderWidth: 1.5,
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        },
+                        {
+                            data: brainData2,
+                            borderColor: '#ec4899',
+                            borderWidth: 1.5,
+                            backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { 
+                            display: false,
+                            min: -1.2,
+                            max: 1.2
+                        }
+                    },
+                    animation: { duration: 0 }
+                }
+            });
+            
+            // Summary chart
+            const summaryCtx = document.getElementById('summaryChart').getContext('2d');
+            new Chart(summaryCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'ECG',
+                            data: [4, 3, 5, 2, 6, 2, 2],
+                            backgroundColor: '#e11d48'
+                        },
+                        {
+                            label: 'EEG',
+                            data: [2, 4, 3, 1, 5, 1, 1],
+                            backgroundColor: '#3b82f6'
+                        },
+                        {
+                            label: 'Brain',
+                            data: [1, 2, 0, 3, 2, 0, 1],
+                            backgroundColor: '#8b5cf6'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: { 
+                            stacked: true,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
