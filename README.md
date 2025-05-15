@@ -4,7 +4,7 @@ NeuroScan is a professional web application for analyzing medical images using m
 
 1. **Brain Tumor Detection**: Analyzes MRI scans to detect potential brain tumors
 2. **ECG Analysis**: Processes electrocardiogram graphs to identify normal/abnormal patterns
-3. **EEG Analysis**: Analyzes electroencephalogram signals to provide diagnostic insights
+3. **EEG Analysis**: Analyzes electroencephalogram signals to provide diagnostic insights for Seizures
 
 ## Features
 
